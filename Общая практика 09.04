@@ -1,0 +1,106 @@
+class SimpleVector {
+private:
+	int  size;
+	int* mas;
+public:
+	SimpleVector() {
+		mas[0] = 0;
+		size = 0;
+	}
+	SimpleVector(int n) {
+		mas = new int[n];
+		size = n;
+	}
+	~SimpleVector() {
+		delete[] mas;
+	}
+	int Size() {
+		return size;
+	}
+	void push_back(int x) {
+		size = Size() + 1;
+		mas[Size()] = x;
+	}
+	int find(int x) {
+		for (int i = 1; i <= Size(); ++i)
+			if (mas[i] == x) return i;
+			else return -1;
+	}
+	int operator [](int x) {
+		return mas[x];
+	}
+	void remove() {
+		for (int i = 1; i < Size(); ++i)
+			mas[i] = mas[i + 1];
+		size = Size() - 1;
+	}
+	bool insert_after(int x, int y) {
+		if (find(y) != -1) {
+			return true;
+			size = Size() + 1;
+			mas[size] = 0;
+			for (int j = size; j > find(y); --j)
+				mas[j] = mas[j - 1];
+		}
+		else return false;
+	}
+};
+
+
+template <typename T>
+class List {
+
+	struct Item {
+		T inf;
+		Item* next;
+		Item(T x, Item* ref = nullptr) : inf(x), next(ref) {}
+	} *first = nullptr, * last = nullptr;
+
+public:
+	void add (T x) {
+		Item* item = new Item(x);
+		if (last != nullptr)
+			last -> next = item;
+		last = item;
+		if (first == nullptr)
+			first = last;
+	}
+
+	void print() {
+		for (Item* t = first; t != nullptr; t = t -> next)
+			cout << t -> inf << " ";
+		cout << endl;
+	}
+
+	void doubleX(T x) {
+		for (Item* t = first; t != nullptr; t = t -> next) {
+			if (t->inf == x) {
+				Item* newItem = new Item(x, t->next);
+				t->next = newItem;
+				t = t->next;
+			}
+		}
+	}
+
+	void Сout(int x) {
+		for (int i = first; i != nullprt; i = i -> next)
+			if (i->inf == x) {
+				cout << i->inf << " ";
+				i = i->next;
+			}
+			else cout << i->inf << " ";
+	}
+	//Удаление элементов.
+	void remove(int x) {
+		for (int i = first; i != nullprе; i = i -> next)
+			if (i->inf == x) {
+				for (int k = 0; k < i; ++k) {
+					Item* new;
+					--size;
+					new = head;
+					head = head -> next;
+				}
+				i == nullprt;
+			}
+	}
+};
